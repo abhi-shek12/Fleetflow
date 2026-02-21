@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FleetFlow - Fleet & Logistics Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <div class="login-brand">
+                <div class="login-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 17h1m16 0h1M5.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 0c1.306 0 2.417.835 2.83 2M9 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 0c1.306 0 2.417.835 2.83 2M19.5 17h1m-4 0h1M3 9.5V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3.5M3 9.5h18M3 14.5V17m0 0v2.5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V14.5"/>
+                    </svg>
+                </div>
+                <h1>FleetFlow</h1>
+                <p>Intelligent Fleet Management</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" value="admin@fleetflow.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="login-password" placeholder="Enter your password" value="demo123" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="login-role">Select Role</label>
+                    <select id="login-role">
+                        <option value="manager">Fleet Manager</option>
+                        <option value="dispatcher">Dispatcher</option>
+                        <option value="safety">Safety Officer</option>
+                        <option value="finance">Financial Analyst</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span>Sign In</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <div class="demo-credentials">
+                    <p>Demo Credentials:</p>
+                    <code>admin@fleetflow.com / demo123</code>
+                </div>
+            </form>
+        </div>
+        <div class="login-visual">
+            <div class="visual-content">
+                <div class="visual-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat-vehicles">0</span>
+                        <span class="stat-label">Vehicles</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat-drivers">0</span>
+                        <span class="stat-label">Drivers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat-trips">0</span>
+                        <span class="stat-label">Trips</span>
+                    </div>
+                </div>
+                <div class="visual-truck">
+                    <svg viewBox="0 0 200 120" fill="none">
+                        <rect x="20" y="40" width="120" height="60" rx="8" fill="#F59E0B"/>
+                        <rect x="140" y="50" width="50" height="40" rx="4" fill="#0F172A"/>
+                        <circle cx="50" cy="100" r="18" fill="#1E293B"/>
+                        <circle cx="150" cy="100" r="18" fill="#1E293B"/>
+                        <circle cx="50" cy="100" r="8" fill="#64748B"/>
+                        <circle cx="150" cy="100" r="8" fill="#64748B"/>
+                        <rect x="60" y="50" width="30" height="25" rx="2" fill="#0F172A" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="app hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 17h1m16 0h1M5.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 0c1.306 0 2.417.835 2.83 2M9 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 0c1.306 0 2.417.835 2.83 2M19.5 17h1m-4 0h1M3 9.5V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3.5M3 9.5h18M3 14.5V17m0 0v2.5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V14.5"/>
+                    </svg>
+                    <span>FleetFlow</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul id="nav-menu">
+                    <!-- Navigation items will be populated based on role -->
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar">M</div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">Manager</span>
+                        <span class="user-role" id="user-role">Fleet Manager</span>
+                    </div>
+                </div>
+                <button class="btn-logout" onclick="logout()" title="Logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                <h1 class="page-title" id="page-title">Dashboard</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input type="text" placeholder="Search..." id="global-search">
+                    </div>
+                    <button class="notification-btn" onclick="showNotifications()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        <span class="notification-badge" id="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="content" id="page-content">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Modal Container -->
+    <div id="modal-container"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
